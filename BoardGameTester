@@ -1,0 +1,102 @@
+package BoardGame;
+
+
+
+
+
+/**
+ *
+ * @author jkirkish
+ */
+public class BoardGameTester {
+    /**
+     * @param args the command line arguments
+     */
+	
+	
+    public static void main(String[] args) {
+        
+        
+    	
+         
+    	
+    	// Board TicTacToe1 = new Board(3,3, null); //create the TicTacToe Board
+        // Board ConnectFour = new Board(6,7, null);//create the ConnectFour Board
+        // Board MasterMind = new Board(5,5, null);//create the MasterMind Board
+    	
+         
+    	
+      /* TicTacToe1.setCell(Mark.NOUGHT, 0, 0);
+       TicTacToe1.setCell(Mark.NOUGHT, 0, 1);
+       TicTacToe1.setCell(Mark.NOUGHT, 0, 2);
+       TicTacToe1.setCell(Mark.NOUGHT, 1, 0);
+       TicTacToe1.setCell(Mark.NOUGHT, 1, 1);
+       TicTacToe1.setCell(Mark.NOUGHT, 1, 2);
+       TicTacToe1.setCell(Mark.NOUGHT, 2, 0);
+       TicTacToe1.setCell(Mark.CROSS, 2, 1);
+       TicTacToe1.setCell(Mark.NOUGHT, 2, 2);
+       System.out.println(TicTacToe1.toString());
+       
+       
+       ConnectFour.setCell(Mark.RED,0,0);
+       ConnectFour.setCell(Mark.RED,0,1);
+       ConnectFour.setCell(Mark.RED,0,2);
+       ConnectFour.setCell(Mark.RED,0,3);
+       ConnectFour.setCell(Mark.RED,0,4);
+       ConnectFour.setCell(Mark.RED,0,5);
+       ConnectFour.setCell(Mark.RED,0,6);
+       ConnectFour.setCell(Mark.RED,1,0);
+       ConnectFour.setCell(Mark.RED,1,1);
+       ConnectFour.setCell(Mark.RED,1,2);
+       ConnectFour.setCell(Mark.RED,1,3);
+       ConnectFour.setCell(Mark.RED,1,4);
+       ConnectFour.setCell(Mark.RED,1,5);
+       ConnectFour.setCell(Mark.RED,1,6);
+       ConnectFour.setCell(Mark.RED,2,0);
+       ConnectFour.setCell(Mark.RED,2,1);
+       ConnectFour.setCell(Mark.RED,2,2);
+       ConnectFour.setCell(Mark.RED,2,3);
+       ConnectFour.setCell(Mark.RED,2,4);
+       ConnectFour.setCell(Mark.RED,2,5);
+       ConnectFour.setCell(Mark.RED,2,6);
+       ConnectFour.setCell(Mark.RED,3,0);
+       ConnectFour.setCell(Mark.RED,3,1);
+       ConnectFour.setCell(Mark.RED,3,2);
+       ConnectFour.setCell(Mark.RED,3,3);
+       ConnectFour.setCell(Mark.RED,3,4);
+       ConnectFour.setCell(Mark.RED,3,5);
+       ConnectFour.setCell(Mark.RED,3,6);
+       ConnectFour.setCell(Mark.RED,4,0);
+       ConnectFour.setCell(Mark.RED,4,1);
+       ConnectFour.setCell(Mark.RED,4,2);
+       ConnectFour.setCell(Mark.RED,4,3);
+       ConnectFour.setCell(Mark.RED,4,4);
+       ConnectFour.setCell(Mark.RED,4,5);
+       ConnectFour.setCell(Mark.RED,4,6);
+       ConnectFour.setCell(Mark.RED,5,0);
+       ConnectFour.setCell(Mark.RED,5,1);
+       ConnectFour.setCell(Mark.RED,5,2);
+       ConnectFour.setCell(Mark.RED,5,3);
+       ConnectFour.setCell(Mark.RED,5,4);
+       ConnectFour.setCell(Mark.RED,5,5);
+       ConnectFour.setCell(Mark.RED,5,6);
+       System.out.println(ConnectFour.toString());
+       
+       
+       
+       
+       
+       MasterMind.setCell(Mark.GREEN, 2, 2);
+       MasterMind.setCell(Mark.MAGENTA, 1, 2);
+       MasterMind.setCell(Mark.NOUGHT, 0, 4);
+       MasterMind.setCell(Mark.YELLOW, 4, 3);
+       System.out.println(MasterMind.toString());
+       */
+       //FileManager.writeToFileAsync(TicTacToe1.toString(), "ttt.txt");
+      // FileManager.writeToFileAsync(ConnectFour.toString(), "c4.txt");
+      // FileManager.writeToFileAsync(MasterMind.toString(), "mm.txt");
+       
+         
+       }
+    
+}
