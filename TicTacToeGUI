@@ -1,0 +1,252 @@
+Enter file contents herepackage BoardGame;
+
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+
+public class TicTacToeGUIGame extends JFrame {
+
+	private static Board gb;
+	private static int turn;
+
+	private TicTacToeGUIGame() {
+		gb = new Board(3, 3, new ActionListener() {
+			public void actionPerformed(ActionEvent ae) {
+				Cell c = (Cell) ae.getSource();
+				takeTurn(c);
+			}
+
+		});
+		this.add(gb);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setTitle("TIC-TAC-TOE");
+		this.setSize(300, 300);
+		this.setVisible(true);
+	}
+
+	public static void main(String[] args) {
+
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				new TicTacToeGUIGame();
+			}
+		});
+
+	}
+
+	// Draw X
+	private void takeTurn(Cell c) {
+		// In the takeTurn method, use the getOutcome
+		// method to determine whether to continue the game.
+		/*
+		 * In the takeTurn method, display a dialog message that displays the
+		 * winner or tie when the game ends. Optionally, you can clear the board
+		 * and start a new game after it ends.
+		 */
+		Mark curMark = (turn++ % 2 == 0) ? Mark.NOUGHT : Mark.CROSS;
+		gb.setCell(curMark, c.getRow(), c.getColumn());
+		System.out.println("Turn" + turn);
+		System.out.println("Cell (0,0)" + gb.getCell(0, 0).getContent());
+		System.out.println("Cell (0,1)" + gb.getCell(0, 1).getContent());
+		System.out.println("Cell (0,2)" + gb.getCell(0, 2).getContent());
+		System.out.println("Cell (1,0)" + gb.getCell(1, 0).getContent());
+		System.out.println("Cell (1,1)" + gb.getCell(1, 1).getContent());
+		System.out.println("Cell (1,2)" + gb.getCell(1, 2).getContent());
+		System.out.println("Cell (2,0)" + gb.getCell(2, 0).getContent());
+		System.out.println("Cell (2,1)" + gb.getCell(2, 1).getContent());
+		System.out.println("Cell (2,2)" + gb.getCell(2, 2).getContent());
+
+		if (turn == 9) {
+			if (TicTacToeGUIGame.getOutcome() == OutCome.PLAYER2_WIN) {
+				JOptionPane.showMessageDialog(this, "PLAYER 2 WINS.");
+			}
+			if (TicTacToeGUIGame.getOutcome() == OutCome.PLAYER1_WIN) {
+				JOptionPane.showMessageDialog(this, "PLAYER 1 WINS.");
+			}
+			if (TicTacToeGUIGame.getOutcome() == OutCome.TIE) {
+				JOptionPane.showMessageDialog(this, "TIE");
+			}
+			if (turn == 9) {
+
+				int input = JOptionPane.showConfirmDialog(this,
+						"WANT TO CONTINUE?.");
+				if (input == 0) {
+					TicTacToeGUIGame tic = new TicTacToeGUIGame();
+				} else {
+					System.exit(EXIT_ON_CLOSE);
+
+				}
+
+			}
+		}
+
+	}
+
+	private static OutCome getOutcome() {
+		/*
+		 * Add a new method named getOutcome that returns an Outcome
+		 * enumeration. Use the winOrTie method in the Lesson 2 graded project
+		 * as a guide. Play1 is a NOUGHT//Play2 is a CROSS
+		 */
+		OutCome outcome = null;
+		// NOUGHT wins horizontal in first row
+
+		if (gb.getCell(0, 0).getContent() == Mark.NOUGHT
+				&& gb.getCell(0, 1).getContent() == Mark.NOUGHT
+				&& gb.getCell(0, 2).getContent() == Mark.NOUGHT) {
+			outcome = OutCome.PLAYER1_WIN;
+
+		}
+
+		// NOUGHT wins horizontal in second row
+		else if (gb.getCell(1, 0).getContent() == Mark.NOUGHT
+				&& gb.getCell(1, 1).getContent() == Mark.NOUGHT
+				&& gb.getCell(1, 2).getContent() == Mark.NOUGHT) {
+			outcome = OutCome.PLAYER1_WIN;
+
+			// NOUGHT results in a tie horizontal in second row
+
+		}// NOUGHT wins horizontal in third row
+		else if (gb.getCell(2, 0).getContent() == Mark.NOUGHT
+				&& gb.getCell(2, 1).getContent() == Mark.NOUGHT
+				&& gb.getCell(2, 2).getContent() == Mark.NOUGHT) {
+			outcome = OutCome.PLAYER1_WIN;
+
+		}
+		// NOUGHT wins vertical in the first column
+		else if (gb.getCell(0, 0).getContent() == Mark.NOUGHT
+				&& gb.getCell(1, 0).getContent() == Mark.NOUGHT
+				&& gb.getCell(2, 0).getContent() == Mark.NOUGHT) {
+			outcome = OutCome.PLAYER1_WIN;
+		}
+
+		// NOUGHT wins vertical in the Second column
+
+		else if (gb.getCell(0, 1).getContent() == Mark.NOUGHT
+				&& gb.getCell(1, 1).getContent() == Mark.NOUGHT
+				&& gb.getCell(2, 1).getContent() == Mark.NOUGHT) {
+			outcome = OutCome.PLAYER1_WIN;
+		}
+
+		// NOUGHT wins vertical in the third column
+
+		else if (gb.getCell(0, 2).getContent() == Mark.NOUGHT
+				&& gb.getCell(1, 2).getContent() == Mark.NOUGHT
+				&& gb.getCell(2, 2).getContent() == Mark.NOUGHT) {
+			outcome = OutCome.PLAYER1_WIN;
+		}
+
+		// NOUGHT wins diagonal from Top left to bottom Right
+		else if (gb.getCell(0, 0).getContent() == Mark.NOUGHT
+				&& gb.getCell(1, 1).getContent() == Mark.NOUGHT
+				&& gb.getCell(2, 2).getContent() == Mark.NOUGHT) {
+			outcome = OutCome.PLAYER1_WIN;
+		}
+
+		// NOUGHT wins diagonal from bottom right to top left
+		else if (gb.getCell(2, 2).getContent() == Mark.NOUGHT
+				&& gb.getCell(1, 1).getContent() == Mark.NOUGHT
+				&& gb.getCell(0, 0).getContent() == Mark.NOUGHT) {
+			outcome = OutCome.PLAYER1_WIN;
+		}
+
+		// NOUGHT wins diagonal from Bottom left to Top Right
+
+		else if (gb.getCell(0, 2).getContent() == Mark.NOUGHT
+				&& gb.getCell(1, 1).getContent() == Mark.NOUGHT
+				&& gb.getCell(2, 0).getContent() == Mark.NOUGHT) {
+			outcome = OutCome.PLAYER1_WIN;
+			// NOUGHT wins diagonal from Top Right to Bottom left
+
+		} else if (gb.getCell(2, 0).getContent() == Mark.NOUGHT
+				&& gb.getCell(1, 1).getContent() == Mark.NOUGHT
+				&& gb.getCell(0, 2).getContent() == Mark.NOUGHT) {
+			outcome = OutCome.PLAYER1_WIN;
+		}
+
+		// ----------------------------------------------------------------------------------------------------------------------------------------------
+		// CROSS wins horizontal in first row
+
+		else if (gb.getCell(0, 0).getContent() == Mark.CROSS
+				&& gb.getCell(0, 1).getContent() == Mark.CROSS
+				&& gb.getCell(0, 2).getContent() == Mark.CROSS) {
+			outcome = OutCome.PLAYER2_WIN;
+		}
+
+		// CROSS wins horizontal in second row
+
+		else if (gb.getCell(1, 0).getContent() == Mark.CROSS
+				&& gb.getCell(1, 1).getContent() == Mark.CROSS
+				&& gb.getCell(1, 2).getContent() == Mark.CROSS) {
+			outcome = OutCome.PLAYER2_WIN;
+
+		} // CROSS wins horizontal in third row
+
+		else if (gb.getCell(2, 0).getContent() == Mark.CROSS
+				&& gb.getCell(2, 1).getContent() == Mark.CROSS
+				&& gb.getCell(2, 2).getContent() == Mark.CROSS) {
+			outcome = OutCome.PLAYER2_WIN;
+
+		}
+		// CROSS wins vertical in the first column
+		else if (gb.getCell(0, 0).getContent() == Mark.CROSS
+				&& gb.getCell(1, 0).getContent() == Mark.CROSS
+				&& gb.getCell(2, 0).getContent() == Mark.CROSS) {
+			outcome = OutCome.PLAYER2_WIN;
+		}
+
+		// CROSS wins vertical in the Second column
+		else if (gb.getCell(0, 1).getContent() == Mark.CROSS
+				&& gb.getCell(1, 1).getContent() == Mark.CROSS
+				&& gb.getCell(2, 1).getContent() == Mark.CROSS) {
+			outcome = OutCome.PLAYER2_WIN;
+		}
+
+		// CROSS wins vertical in the third column
+
+		else if (gb.getCell(0, 2).getContent() == Mark.CROSS
+				&& gb.getCell(1, 2).getContent() == Mark.CROSS
+				&& gb.getCell(2, 2).getContent() == Mark.CROSS) {
+			outcome = OutCome.PLAYER2_WIN;
+		}
+
+		// CROSS wins diagonal from Top left to bottom Right
+		else if (gb.getCell(0, 0).getContent() == Mark.CROSS
+				&& gb.getCell(1, 1).getContent() == Mark.CROSS
+				&& gb.getCell(2, 2).getContent() == Mark.CROSS) {
+			outcome = OutCome.PLAYER2_WIN;
+		}
+		// CROSS wins diagonal from bottom right to top left left
+		else if (gb.getCell(2, 2).getContent() == Mark.CROSS
+				&& gb.getCell(1, 1).getContent() == Mark.CROSS
+				&& gb.getCell(0, 0).getContent() == Mark.CROSS) {
+			outcome = OutCome.PLAYER2_WIN;
+		}
+		// CROSS wins diagonal from Top right to bottom left
+
+		else if (gb.getCell(0, 2).getContent() == Mark.CROSS
+				&& gb.getCell(1, 1).getContent() == Mark.CROSS
+				&& gb.getCell(2, 0).getContent() == Mark.CROSS) {
+			outcome = OutCome.PLAYER2_WIN;
+		}
+		// CROSS wins diagonal from bottom left to top right
+		else if (gb.getCell(2, 0).getContent() == Mark.CROSS
+				&& gb.getCell(1, 1).getContent() == Mark.CROSS
+				&& gb.getCell(0, 2).getContent() == Mark.CROSS) {
+			outcome = OutCome.PLAYER2_WIN;
+		}
+		// everything else is a tie
+		else {
+
+			outcome = OutCome.TIE;
+		}
+		return outcome;
+	}
+}
